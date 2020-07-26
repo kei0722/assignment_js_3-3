@@ -20,7 +20,7 @@ document.getElementById('add-btn').addEventListener('click', () => {
 	const todo = {
 		id: todoListId,
 		comment: inputValue,
-		status: ['作業中', '完了'],
+		status: '作業中',
 		deleteBtn: '削除',
 	};
 
@@ -34,7 +34,7 @@ document.getElementById('add-btn').addEventListener('click', () => {
 
 	function showButton() {
 		for (let i = 0; i < todoList.length; i++) {
-			statusButton.textContent = todoList[i].status[0];
+			statusButton.textContent = todoList[i].status;
 			statusButton.className = 'working-button';
 			tbody.children[i].children[2].appendChild(statusButton);
 			deleteButton.textContent = todoList[i].deleteBtn;
@@ -57,12 +57,11 @@ document.getElementById('add-btn').addEventListener('click', () => {
 	document.getElementById('input-task').value = '';
 
 	statusButton.addEventListener('click', e => {
-		let index = Number(e.target.closest('tr').children[0].textContent);
 		if (e.target.classList.contains('working-button')) {
-			e.target.textContent = todoList[index].status[1];
+			e.target.textContent = '完了';
 			e.target.className = 'done-button';
 		} else if (e.target.classList.contains('done-button')) {
-			e.target.textContent = todoList[index].status[0];
+			e.target.textContent = '作業中';
 			e.target.className = 'working-button';
 		}
 	});
